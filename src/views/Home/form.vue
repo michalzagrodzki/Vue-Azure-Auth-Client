@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'Form',
   props: {
@@ -34,9 +36,17 @@ export default {
   },
   methods: {
     login: function () {
-      console.log('submitting:')
-      console.log(this.username)
-      console.log(this.password)
+      axios
+        .post('api/loginaad', {
+          username: this.username,
+          password: this.password
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   }
 }

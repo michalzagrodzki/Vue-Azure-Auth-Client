@@ -1,11 +1,13 @@
-# vue-azure-auth
+# Client app for authenticating with Azure AD
+This project aims for creating solution for web client app, that can serve content for authenticated users.
+Authenticating is done through Azure Active Directory
 
 ## Project setup
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### Development server
 ```
 yarn run serve
 ```

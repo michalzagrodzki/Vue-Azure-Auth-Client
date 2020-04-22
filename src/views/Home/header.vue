@@ -2,7 +2,7 @@
   <div>
     <h1>{{ msg }}</h1>
     <p>
-      Please use form below to login to service
+      Please use button below to login to service
     </p>
   </div>
 </template>

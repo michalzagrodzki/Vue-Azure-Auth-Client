@@ -19,8 +19,11 @@ export default {
     Header,
     Details
   },
+  created () {
+    this.getDetails();
+  },
   methods: {
-    login: function () {
+    getDetails: function () {
       axios
         .get('http://localhost:4000/user')
         .then(function (response) {

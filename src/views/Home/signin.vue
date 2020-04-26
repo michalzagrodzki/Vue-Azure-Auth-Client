@@ -8,23 +8,15 @@
 </template>
 
 <script>
-import axios from 'axios';
 
 export default {
-  name: 'Form',
+  name: 'Signin',
   props: {
     msg: String
   },
   methods: {
     signin: function () {
-      axios
-        .get('http://localhost:4000/auth/signin')
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      window.location.href = 'https://localhost:4000/auth/signin'
     }
   }
 }

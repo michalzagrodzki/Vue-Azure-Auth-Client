@@ -7,8 +7,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import axios from 'axios';
 
 import Header from '@/views/User/header.vue'
 import Details from '@/views/User/details.vue'
@@ -24,12 +22,14 @@ export default {
   },
   methods: {
     getDetails: function () {
-      axios
-        .get('http://localhost:4000/user')
+      this.$http
+        .get('user')
         .then(function (response) {
+          console.log('response:')
           console.log(response);
         })
         .catch(function (error) {
+          console.log('error:')
           console.log(error);
         });
     }

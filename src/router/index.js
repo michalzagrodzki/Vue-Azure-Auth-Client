@@ -22,7 +22,7 @@ function addSessionToken (token, key, next) {
  * Check if token is present in sessionStorage.
  * */ 
 function isAuthenticated (match, next) {
-  const token = sessionStorage.getItem('token')
+  const token = sessionStorage.getItem('access')
   if (match && token !== null) {
     return next()
   } else {

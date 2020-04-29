@@ -17,7 +17,9 @@ const instance = axios.create({
 instance.interceptors.request.use(
   config => {
     const accessToken = sessionStorage.getItem('access')
-    if (accessToken) { config.headers.common['Authorization'] = accessToken; }
+    if (accessToken !== null) {
+      config.headers.common['Authorization'] = accessToken;
+    }
     return config;
   },
   error => {

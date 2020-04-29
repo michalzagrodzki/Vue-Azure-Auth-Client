@@ -16,4 +16,12 @@ export default {
 }
 </script>
 <style scoped>
+  h1 {
+    margin-bottom: 0;
+  }
+
+  p {
+    margin-top: 0;
+    color: #42b983;
+  }
 </style>

@@ -63,4 +63,7 @@ export default {
 }
 </script>
 <style scoped>
+  h3 {
+    margin-top: 35px;
+  }
 </style>

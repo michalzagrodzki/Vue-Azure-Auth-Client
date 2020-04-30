@@ -2,7 +2,7 @@
   <div>
     <button 
     v-on:click="signin()">
-      Submit
+      {{ label }}
     </button>
   </div>
 </template>
@@ -12,11 +12,15 @@
 export default {
   name: 'Signin',
   props: {
-    msg: String
+    label: {
+      type: String,
+      required: true
+    },
   },
   methods: {
     signin: function () {
-      window.location.href = 'https://localhost:4000/auth/signin'
+      const api = process.env.VUE_APP_API
+      window.location.href = `${api}auth/signin`
     }
   }
 }

@@ -5,6 +5,10 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+/* Create default values for session storage */
+if (!sessionStorage.access) { sessionStorage.access = '' }
+if (!sessionStorage.refresh) { sessionStorage.refresh = '' }
+
 /** 
  * Method for fetching data from backend
  * 

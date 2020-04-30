@@ -1,8 +1,8 @@
 <template>
   <div>
     <img alt="Vue logo" src="../assets/logo.png">
-    <Header msg="Welcome to Azure AD authentication app"/>
-    <Signin />
+    <Header :msg="header_message"/>
+    <Signin :label="label" />
   </div>
 </template>
 
@@ -16,6 +16,12 @@ export default {
   components: {
     Header,
     Signin
+  },
+  data () {
+    return {
+      label: 'Sign in',
+      header_message: 'Welcome to Azure AD authentication app'
+    }
   }
 }
 </script>

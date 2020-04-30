@@ -49,8 +49,9 @@ export default {
           vm.user = { givenName, jobTitle, mail, mobilePhone, preferredLanguage, surname }
         })
         .catch(function (error) {
-          console.log('error:')
-          console.log(error);
+          if (error.response.status === 401) {
+            vm.$router.push({ name: 'Home'})
+          }
         });
     }
   }

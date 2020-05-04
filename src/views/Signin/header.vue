@@ -1,9 +1,7 @@
 <template>
   <div>
-    <h1>{{ msg }}</h1>
-    <p>
-      Please use button below to login to service
-    </p>
+    <h1>{{ title }}</h1>
+    <p>{{ caption }}</p>
   </div>
 </template>
 
@@ -11,7 +9,8 @@
 export default {
   name: 'Header',
   props: {
-    msg: String
+    title: String,
+    caption: String
   }
 }
 </script>

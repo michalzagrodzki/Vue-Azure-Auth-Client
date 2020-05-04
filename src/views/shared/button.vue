@@ -1,7 +1,7 @@
 <template>
   <div>
     <button 
-    v-on:click="signin()">
+    v-on:click="link()">
       {{ label }}
     </button>
   </div>
@@ -10,7 +10,7 @@
 <script>
 
 export default {
-  name: 'Signin',
+  name: 'Button',
   props: {
     label: {
       type: String,
@@ -18,9 +18,8 @@ export default {
     },
   },
   methods: {
-    signin: function () {
-      const api = process.env.VUE_APP_API
-      window.location.href = `${api}auth/signin`
+    link: function () {
+      this.$emit('link')
     }
   }
 }

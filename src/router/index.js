@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Signin from '../views/Signin.vue'
 import User from '../views/User.vue'
 
 /** 
@@ -8,12 +9,17 @@ import User from '../views/User.vue'
  * 
  * Token is retrieved from uri path.
  * */ 
-function addSessionToken (token, key, next) {
-  if (token) {
-    const decodedUriToken = decodeURIComponent(token)
+function addSessionTokens (tokens, next) {
+  function addToken (key, value) {
+    const decodedUriToken = decodeURIComponent(value)
     sessionStorage.setItem(key, decodedUriToken)
   }
-  return next();
+
+  for (const token of tokens) {
+    addToken(token.key, token.value)
+  }
+  
+  return next('/');
 }
 
 /** 
@@ -23,10 +29,12 @@ function addSessionToken (token, key, next) {
  * */ 
 function isAuthenticated (match, next) {
   const token = sessionStorage.getItem('access')
-  if (match && token !== null) {
+  if (match && token.length > 0) {
     return next()
+  } else if (match && token.length === 0) {
+    return next('/signin')
   } else {
-    return next('/')
+    return next()
   }
 }
 
@@ -36,7 +44,15 @@ Vue.use(VueRouter)
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/signin',
+    name: 'Signin',
+    component: Signin
   },
   {
     path: '/user',
@@ -63,8 +79,13 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  addSessionToken(to.query.access, 'access', next);
-  addSessionToken(to.query.refresh, 'refresh', next);
+  if (to.query.access && to.query.refresh) {
+    addSessionTokens(
+      [ { key: 'access', value: to.query.access },
+        { key: 'refresh', value: to.query.refresh } ], 
+      next
+    );
+  }
   isAuthenticated(to.matched.some(record => record.meta.requiresAuth), next);
 })
 

@@ -3,13 +3,14 @@
     <img alt="Vue logo" src="../assets/logo.png">
     <Header msg="Authenticated view"/>
     <Details
-      :givenName="user.givenName"
-      :surname="user.surname"
-      :jobTitle="user.jobTitle"
-      :mail="user.mail"
-      :mobilePhone="user.mobilePhone"
-      :preferredLanguage="user.preferredLanguage" 
+      :givenName="user.givenName || ''"
+      :surname="user.surname || ''"
+      :jobTitle="user.jobTitle || ''"
+      :mail="user.mail || ''"
+      :mobilePhone="user.mobilePhone || ''"
+      :preferredLanguage="user.preferredLanguage || ''" 
       />
+    <home-link :label="label" @link="linkToHome()"/>
   </div>
 </template>
 
@@ -17,12 +18,14 @@
 
 import Header from '@/views/User/header.vue'
 import Details from '@/views/User/details.vue'
+import HomeLink from '@/views/shared/button.vue'
 
 export default {
   name: 'User',
   components: {
     Header,
-    Details
+    Details,
+    HomeLink
   },
   data () {
     return {
@@ -33,7 +36,8 @@ export default {
         mail: '',
         mobilePhone: '',
         preferredLanguage: ''
-      }
+      },
+      label: 'Back to home'
     }
   },
   created () {
@@ -50,9 +54,12 @@ export default {
         })
         .catch(function (error) {
           if (error.response.status === 401) {
-            vm.$router.push({ name: 'Home'})
+            vm.$router.push({ name: 'Signin'})
           }
         });
+    },
+    linkToHome: function () {
+      this.$router.push({ name: 'Home' })
     }
   }
 }

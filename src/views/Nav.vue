@@ -39,13 +39,15 @@ export default {
         .then(function (response) {
           if (response.status === 200) {
             vm.isAuth = false;
-            console.log(vm.isAuth)
             sessionStorage.access = '';
             sessionStorage.refresh = '';
           }
         })
         .catch(function (error) {
           console.log(error)
+        })
+        .finally(function () {
+          vm.$router.push({ name: 'Signin' })
         });
     }
   }
